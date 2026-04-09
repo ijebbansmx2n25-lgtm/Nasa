@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tails OS - Privacidad extrema">
+    <title>Tails OS • Privacidad Extrema</title>
+    <style>
+        :root { --nasa-blue: #0b3d91; --nasa-red: #fc3d21; --dark-bg: #0a0a2a; --card-bg: #1a1a4d; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--dark-bg); color: #e0e0ff; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; font-size: 1.1rem; }
+        nav { background: var(--nasa-blue); position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .nav-brand { font-size: 1.8rem; font-weight: 700; color: white; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+        .nav-links a:hover { color: var(--nasa-red); }
+        .nav-links a.active { color: var(--nasa-red); border-bottom: 3px solid var(--nasa-red); }
+        section { max-width: 1200px; margin: 0 auto; padding: 100px 20px; }
+        .section-title { font-size: 2.8rem; font-weight: 700; text-align: center; margin-bottom: 3rem; position: relative; }
+        .section-title::after { content: ''; width: 120px; height: 5px; background: var(--nasa-red); position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%); }
+        .content-box { background: var(--card-bg); border-radius: 20px; padding: 50px; margin-bottom: 60px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); }
+        .content-box h2 { color: var(--nasa-red); margin-bottom: 1.5rem; font-size: 2rem; }
+        .content-box p, .content-box li { font-size: 1.15rem; margin-bottom: 1.2rem; }
+        details { margin-bottom: 15px; background: var(--card-bg); border-radius: 15px; overflow: hidden; }
+        summary { padding: 25px 30px; background: #22225a; cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; }
+        summary::-webkit-details-marker { display: none; }
+        .details-content { padding: 30px; }
+        @media (max-width: 768px) { .nav-links { gap: 1rem; flex-wrap: wrap; } }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span style="font-size:2rem;">🚀</span> NASA Seguridad
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="redhat.html">Red Hat</a></li>
+                <li><a href="tails.html" class="active">Tails OS</a></li>
+                <li><a href="linux.html">Linux vs Windows</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section>
+        <h2 class="section-title">Tails OS – El sistema de privacidad extrema</h2>
+        <div class="content-box">
+            <p>Tails (The Amnesic Incognito Live System) es un sistema operativo completo que se ejecuta desde una USB y desaparece completamente al apagarlo.</p>
+            <details>
+                <summary>¿Cómo funciona Tails?</summary>
+                <div class="details-content">Todo el tráfico pasa por Tor. La RAM se borra al apagar. No deja ningún rastro en el ordenador.</div>
+            </details>
+            <details>
+                <summary>¿Quién lo usa?</summary>
+                <div class="details-content">Edward Snowden, periodistas de investigación y activistas de derechos humanos.</div>
+            </details>
+            <details>
+                <summary>¿Por qué yo lo uso?</summary>
+                <div class="details-content">Cuando necesito máxima privacidad y no quiero que quede ninguna huella digital.</div>
+            </details>
+        </div>
+    </section>
+
+    <footer style="background:#0b3d91; padding:60px 20px; text-align:center; color:white;">
+        <p>Proyecto educativo • Seguridad Informática 2026 • Hecho 100% con HTML + CSS puro</p>
+        <p><a href="https://github.com/tu-usuario/tu-repo" style="color:white;">Ver en GitHub</a></p>
+    </footer>
+</body>
+</html>

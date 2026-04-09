@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Seguridad Informática de la NASA: Red Hat, Tails y por qué elijo Linux en 2026">
+    <title>Seguridad Informática NASA • Linux en el Espacio</title>
+    <style>
+        :root {
+            --nasa-blue: #0b3d91;
+            --nasa-red: #fc3d21;
+            --dark-bg: #0a0a2a;
+            --card-bg: #1a1a4d;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: var(--dark-bg);
+            color: #e0e0ff;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        /* Navbar */
+        nav {
+            background: var(--nasa-blue);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .nav-links a:hover { color: var(--nasa-red); }
+        .nav-links a.active {
+            color: var(--nasa-red);
+            border-bottom: 3px solid var(--nasa-red);
+        }
+
+        /* Hero (solo en index) */
+        .hero {
+            background: linear-gradient(rgba(11, 61, 145, 0.92), rgba(11, 61, 145, 0.88)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1200px-NASA_logo.svg.png') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .btn-nasa {
+            background: var(--nasa-red);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+        .btn-nasa:hover {
+            background: #ff5a3a;
+            transform: scale(1.05);
+        }
+
+        /* Secciones */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+        .section-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            width: 120px;
+            height: 5px;
+            background: var(--nasa-red);
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .content-box {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 50px;
+            margin-bottom: 60px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        .content-box h2 {
+            color: var(--nasa-red);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        .content-box p, .content-box li {
+            font-size: 1.15rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 40px rgba(252, 61, 33, 0.25);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            padding: 20px;
+            background: #0f0f3a;
+        }
+        .card-body {
+            padding: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: #1a1a4d;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 20px 25px;
+            text-align: left;
+            border-bottom: 1px solid #334;
+        }
+        th {
+            background: var(--nasa-blue);
+            color: white;
+            font-size: 1.3rem;
+        }
+        tr:nth-child(even) { background: #22225a; }
+        .green { color: #4ade80; font-weight: 600; }
+        .orange { color: #facc15; font-weight: 600; }
+
+        /* Acordeón puro CSS (con <details>) */
+        details {
+            margin-bottom: 15px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        summary {
+            padding: 25px 30px;
+            background: #22225a;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+        }
+        summary::-webkit-details-marker { display: none; }
+        .details-content {
+            padding: 30px;
+        }
+
+        footer {
+            background: #0b3d91;
+            padding: 80px 20px 40px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .nav-links { gap: 1rem; font-size: 1rem; flex-wrap: wrap; }
+        }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR (igual en todas las páginas) -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span style="font-size:2rem;"></span> NASA Seguridad
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="redhat.html">Red Hat</a></li>
+                <li><a href="tails.html">Tails OS</a></li>
+                <li><a href="linux.html">Linux vs Windows</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Seguridad Informática en la NASA</h1>
+            <p>Cómo Linux, Red Hat y Tails protegen las misiones espaciales más críticas del mundo en 2026</p>
+            <a href="redhat.html" class="btn-nasa" style="text-decoration:none; display:inline-block;">
+                Explorar Red Hat en la NASA →
+            </a>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section>
+        <h2 class="section-title">Introducción a la Seguridad Informática de la NASA</h2>
+        <div class="content-box">
+            <p>La NASA no solo envía cohetes al espacio: también protege miles de millones de líneas de código y datos sensibles contra ciberataques. Desde 2010, la agencia adoptó un enfoque “zero trust” y migró casi todos sus sistemas críticos a Linux y Red Hat Enterprise Linux.</p>
+            <p>En 2026, los supercomputadores de la NASA (Electra, Aitken, Athena y los nuevos sistemas que reemplazaron a Pleiades) funcionan con <strong>TOSS</strong> (Tri-Lab Operating System Stack), un sistema basado completamente en Red Hat Enterprise Linux. Esto no es casualidad: Linux ofrece estabilidad extrema, código abierto auditable y herramientas de seguridad como SELinux que Windows simplemente no puede igualar en entornos de misión crítica.</p>
+            <p>Este sitio web explica paso a paso la estrategia de seguridad de la NASA y por qué yo, como estudiante de informática, decidí elegir Linux en lugar de Windows para mi día a día.</p>
+            
+            <div class="cards-grid" style="margin-top: 50px;">
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/800px-NASA_logo.svg.png" alt="NASA">
+                    <div class="card-body">
+                        <h3>2026 – Realidad actual</h3>
+                        <p>Pleiades fue desactivado en enero de 2026. Todos los supercomputadores de la NASA ahora usan TOSS 4 (Red Hat).</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Red_Hat_Logo.svg/512px-Red_Hat_Logo.svg.png" alt="Red Hat">
+                    <div class="card-body">
+                        <h3>Red Hat = Confianza</h3>
+                        <p>Usado por NASA, Lockheed Martin, Boeing y el Departamento de Defensa de EE.UU.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://tails.net/assets/images/tails-logo.png" alt="Tails">
+                    <div class="card-body">
+                        <h3>Tails = Privacidad total</h3>
+                        <p>El sistema que usó Edward Snowden para comunicarse sin dejar rastro.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="content-box" style="background:#0b3d91; color:white; max-width:800px; margin:0 auto;">
+            <p>Iliyas Jebban  • Seguridad Informática 2026 • Copyright © 2026</p>
+            <p><a href="https://github.com/tu-usuario/tu-repo" style="color:white; text-decoration:underline;">Ver en GitHub</a></p>
+        </div>
+    </footer>
+</body>
+</html>
